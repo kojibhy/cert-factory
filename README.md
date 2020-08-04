@@ -24,6 +24,22 @@
 ```
 - add rootCA.cert to browser authority.
 
+
+### dnsmasq setup
+- install dnsmasq
+```text
+apt install dnsmasq
+```
+- configure dnsmasq
+``
+chmod +x dnsmasq-install.sh && ./dnsmasq-install.sh
+``
+- create new config file for domain in /etc/dnsmasq.d/
+```text
+# cat /etc/dnsmasq.d/domain.com.conf
+address=/domain.com/0.0.0.0
+```
+
 ### COMMANDS
 ```text
 usage: 
