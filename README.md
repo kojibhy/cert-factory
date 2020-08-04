@@ -9,9 +9,20 @@
 ```
 
 ### HOW TO
+
+- generate certificates:
+    
 ```bash
     python3 ./cert_factory.py cert -d domain.com domain2.com
 ```
+- add certificates to your nginx config:
+```text
+    # add this line`s to your nginx config.
+    ssl_certificate /etc/nginx/ssl/domain.com.crt;
+    ssl_certificate_key /etc/nginx/ssl/domain.com.key;
+    ssl_client_certificate /etc/nginx/ssl/rootCA.crt;
+```
+- add rootCA.cert to browser authority.
 
 ### COMMANDS
 ```text
