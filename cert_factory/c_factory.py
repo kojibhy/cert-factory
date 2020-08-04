@@ -51,7 +51,6 @@ class DomainSignedCertificate:
             ]
         )
 
-    # 10 years expiry date
     def _root(self, days: int = settings.DEFAULT_EXPIRY_DATE):
         cert_key = self._private_key()
         _details = self.get_details()
@@ -70,8 +69,6 @@ class DomainSignedCertificate:
         return self.to_string(cert, cert_key)
 
     def build(self, root_key, root_cert, domain: str, days: int = settings.DEFAULT_EXPIRY_DATE) -> Tuple[bytes, bytes]:
-        logger.debug(f"build:{root_cert}")
-        logger.debug(f"build:{root_key}")
         cert_key = self._private_key()
         cert = x509.CertificateBuilder() \
             .subject_name(self.get_details()) \
