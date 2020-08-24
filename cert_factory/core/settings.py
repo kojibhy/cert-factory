@@ -19,7 +19,7 @@ DEFAULT_COMMON_NAME = "My Test CA"
 DEFAULT_ROOT_CERT_NAME = "rootCA.crt"
 DEFAULT_ROOT_KEY_NAME = "rootCA.key"
 
-DEFAULT_EXPIRY_DATE = 825  # The maximum validity period of TLS/SSL certificates is currently at 825 days (2 years, 3 month, and 5 days).
+DEFAULT_EXPIRY_DATE = 90  # The maximum validity period of TLS/SSL certificates is currently at 825 days (2 years, 3 month, and 5 days).
 logger_config = {
     'version': 1,
     'disable_existing_loggers': False,
