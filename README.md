@@ -13,7 +13,7 @@
 - generate certificates:
     
 ```bash
-    python3 ./cert_factory.py cert -d domain.com domain2.com
+    python3 ./cert_factory cert -d domain.com domain2.com
 ```
 - add certificates to your nginx config:
 ```text
