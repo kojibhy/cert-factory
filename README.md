@@ -22,8 +22,7 @@ $ ./certfactory.py sign -d domain.com
 ### Important!
 
 ```text
-* First time you start script it creates rootCA.crt and rootCA.key in ./config/ folder all
-      domian certificates will be sign by this root.crt`
+* The first time you start the script it creates ./certificates/ folder where store rootCA.crt and rootCA.key and all domain certificates will be signed by this root.crt`
 ```
 
 ```text
