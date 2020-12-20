@@ -1,75 +1,119 @@
-# local-https-dev
-- create self sign  SSL certificate for local development.
+# Certificate Factory
 
+- create self sign SSL certificate for domains in local development.
+- create Root Authority's for domains in local development.
 
-### Important!
-```
-* First time you start script it creates rootCA.crt and rootCA.key in ./config/ folder all
-      domian certificates will be sign by this root.crt`
+## Install
+
+- install script
+
+```bash
+$  git clone https://github.com/kojibhy/cert-factory && cd cert-factory && ./install.sh
 ```
 
 ### HOW TO
 
-- generate certificates:
-    
+- create Self Sign Certificates
+
 ```bash
-    python3 ./cert_factory cert -d domain.com domain2.com
+$ ./certfactory.py sign -d domain.com
 ```
+
+### Important!
+
+```text
+* First time you start script it creates rootCA.crt and rootCA.key in ./config/ folder all
+      domian certificates will be sign by this root.crt`
+```
+
+```text
+optional arguments:
+  -h, --help            show this help message and exit
+  --certificates-dir CERTIFICATES_DIR
+  -d DOMAIN [DOMAIN ...], --domain DOMAIN [DOMAIN ...]
+  --rKey RKEY
+  --rCert RCERT
+  --commonName COMMONNAME
+                        commonName
+  --countryName COUNTRYNAME
+                        countryName
+  --localityName LOCALITYNAME
+                        localityName
+  --stateOrProvinceName STATEORPROVINCENAME
+                        stateOrProvinceName
+  --streetAddress STREETADDRESS
+                        streetAddress
+  --organizationName ORGANIZATIONNAME
+                        organizationName
+  --organizationalUnitName ORGANIZATIONALUNITNAME
+                        organizationalUnitName
+  --serialNumber SERIALNUMBER
+                        serialNumber
+  --surname SURNAME     surname
+  --givenName GIVENNAME
+                        givenName
+  --title TITLE         title
+```
+
+- create Root Authority's:
+
+```text
+
+  $ ./certfactory.py create 
+
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --certificates-dir CERTIFICATES_DIR
+  --commonName COMMONNAME
+                        commonName
+  --countryName COUNTRYNAME
+                        countryName
+  --localityName LOCALITYNAME
+                        localityName
+  --stateOrProvinceName STATEORPROVINCENAME
+                        stateOrProvinceName
+  --streetAddress STREETADDRESS
+                        streetAddress
+  --organizationName ORGANIZATIONNAME
+                        organizationName
+  --organizationalUnitName ORGANIZATIONALUNITNAME
+                        organizationalUnitName
+  --serialNumber SERIALNUMBER
+                        serialNumber
+  --surname SURNAME     surname
+  --givenName GIVENNAME
+                        givenName
+  --title TITLE         title
+
+```
+
 - add certificates to your nginx config:
+
 ```text
     # add this line`s to your nginx config.
     ssl_certificate /etc/nginx/ssl/domain.com.crt;
     ssl_certificate_key /etc/nginx/ssl/domain.com.key;
     ssl_client_certificate /etc/nginx/ssl/rootCA.crt;
 ```
+
 - add rootCA.cert to browser authority.
 
-
 ### dnsmasq setup
+
 - install dnsmasq
+
 ```text
 apt install dnsmasq
 ```
+
 - configure dnsmasq
-``
-chmod +x dnsmasq-install.sh && ./dnsmasq-install.sh
-``
+  ``
+  chmod +x dnsmasq-install.sh && ./dnsmasq-install.sh
+  ``
 - create new config file for domain in /etc/dnsmasq.d/
+
 ```text
 # cat /etc/dnsmasq.d/domain.com.conf
 address=/domain.com/0.0.0.0
-```
-
-### COMMANDS
-```text
-usage: 
-    ./cert_factory.py <command> [<args>] -h 
-        The most commonly used commands are:
-        - cert: 
-              
-              #first rootCA,key, and rootCA.crt from User input,
-              #then from default dirs and only then
-              optional arguments:
-              -h, --help            show this help message and exit
-              -rK ROOTKEY, --rootKey ROOTKEY
-              -rCA ROOTCERTIFICATE, --rootCertificate ROOTCERTIFICATE
-              -d DOMAIN [DOMAIN ...], --domain DOMAIN [DOMAIN ...]
-              -o OUTPUT, --output OUTPUT
-              --common_name COMMON_NAME
-              --country_name COUNTRY_NAME
-              --locality_name LOCALITY_NAME
-              --organization_name ORGANIZATION_NAME
-              --state_or_province_name STATE_OR_PROVINCE_NAME
-
-        - root:
-            optional arguments:
-              -h, --help            show this help message and exit
-              -o OUTPUT, --output OUTPUT
-              --common_name COMMON_NAME
-              --country_name COUNTRY_NAME
-              --locality_name LOCALITY_NAME
-              --organization_name ORGANIZATION_NAME
-              --state_or_province_name STATE_OR_PROVINCE_NAME
-
-
 ```

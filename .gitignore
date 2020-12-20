@@ -273,3 +273,4 @@ venv.bak/
 .tmp/
 ssl/
 config/
+certificates/
